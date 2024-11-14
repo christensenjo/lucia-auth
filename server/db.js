@@ -1,13 +1,16 @@
 import pg from 'pg';
+import { useRuntimeConfig } from '#imports'
+
 const { Pool } = pg;
+const config = useRuntimeConfig()
 
 // Create a new pool instance
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'your_database_name',
-    password: 'your_password',
-    port: 5432,
+    user: config.DATABASE_USER,
+    host: config.DATABASE_HOST,
+    database: config.DATABASE_NAME,
+    password: config.DATABASE_PASSWORD,
+    port: config.DATABASE_PORT,
 });
 
 export const db = {
